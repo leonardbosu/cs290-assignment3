@@ -12,8 +12,7 @@
 * @return {null} - 'useless'.
 */
 
-function uselessFunction()
-{
+function uselessFunction(){
 	return null;
 }
 
@@ -30,13 +29,13 @@ var barType = typeof bar;
 * This should return false if any value in the array cannot be doubled.
 */
 
-var bar = function(float[] doubleArray)
+bar = function(doubleArray)
 {
 	var answer = true;
 	for (var i = 0; i < doubleArray.length; ++i)
 	{
 		var tempIndex = doubleArray[i];
-		doubleArray[i] = 2*[doubleArray];
+		doubleArray[i] = 2*(doubleArray[i]);
 		if ((doubleArray[i])/2 !== tempIndex){answer = false;}
 	}
 	return answer
@@ -74,6 +73,31 @@ function GitLog(hash, date, message) {
 * @return {array.<GitLog>} - return an array GitLog instances
 */
 
-//your code here
+function parseGit(logArray)
+{
+	var newArray = new Array();
+	var tempString;
+	var dateStart;
+	var messageStart;
+	var tempHash;
+	var tempDate;
+	var tempString2;
 
-//end your code
+	for (var i = 0; i < logArray.length; ++i)
+	{
+		tempString = logArray[i];
+		dateStart = tempString.search(" ");
+		messageStart = tempString.search("-")+7;
+
+		tempHash = tempString.substring(0, dateStart);
+		tempDate = tempString.substring(dateStart, messageStart);
+		tempDate = new Date(tempDate);
+		tempString2 = tempString.substring(messageStart, tempString.length -1);
+
+		newArray.push( new GitLog(tempHash, tempDate, tempString2));
+
+	}
+	
+	return newArray;
+	
+}

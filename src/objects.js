@@ -8,11 +8,15 @@
 * @return {object} - the object literal
 */
 
-function returnObjectLiteral() {
-  //your code here
-  return undefined; //Modify ONLY this line
-  //end your code
-}
+function returnObjectLiteral() 
+{
+  var newobject = { type: 'Goldfish',
+					brand: 'Pepperidge Farm',
+					flavor: 'Cheddar',
+					count: 2000};
+ return newobject;
+  
+};
 
 /**
 * Create a constructor function for a `MessageLog` object.
@@ -37,18 +41,70 @@ function returnObjectLiteral() {
 * received
 */
 
-//your code here
+function MessageLog(user)
+{
+	this.logUser = user;
+	this.log = new Array();
+	this.totRec = 0;
+	this.totSent = 0;
 
-//end your code
+
+	this.logMessage = function(messageText, direction){
+
+		var message = {text: messageText, dir: direction};
+
+		if (this.totRec > 4)
+		{
+			if (this.log[0].dir > 0)
+			{
+				this.totRec -= 1;
+			}
+			else
+			{
+				this.totSent -= 1;
+			}
+
+			this.log.shift();
+		}
+
+		if (direction > 0)
+		{
+			this.totRec += 1;
+		}
+		else
+		{
+			this.totSend += 1;
+		}
+
+		this.log.push(message);
+		
+	};
+
+	this.getSentMessage = function(n){
+
+		return this.log[n].text;
+
+	};
+
+	this.totalSent = function(){
+		return this.totSent;
+	};
+
+	this.totalReceived = function(){
+		return this.totRec;
+	};
+
+};
 
 /**
 * Add a method to the MessageLog prototype:
 * lastReceivedMessage() - returns the message text of the last message the user
 * received.
 */
-//your code here
+MessageLog.prototype.lastReceivedMessage = function(){
 
-//end your code
+		return this.log[this.log.length];
+}
 
 /**
 * Create an instance of a `MessageLog` for the user "BlackHatGuy". Have the
@@ -56,6 +112,7 @@ function returnObjectLiteral() {
 * Assign it to the variable myLog.
 */
 
-//your code here
-
-//end your code
+var myLog = new MessageLog(BlackHatGuy);
+myLog.logMessage("foo", 1);
+myLog.logMessage("bar", 1);
+myLog.logMessage("baz", 1);
