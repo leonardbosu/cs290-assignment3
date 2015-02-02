@@ -1,1 +1,9 @@
-You log goes in this  file.
+Start: Sat, 31 Jan 2015 19:12:03 -8000
+End: Sun, 1 Feb 2015 23:49:53 -0800
+Tasks: final commit - couldn't fix last errors
+Start: Sat, 31 Jan 2015 14:36:03 -0800
+End: Sat, 31 Jan 2015 19:12:03 -0800
+Tasks: finished variables section
+Start: Sat, 31 Jan 2015 12:47:00 -0800
+End: Sat, 31 Jan 2015 14:36:03 -0800
+Tasks: Initial Commit
